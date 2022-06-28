@@ -1,5 +1,7 @@
+require_relative "./card.rb"
+
 class Board
-    DICTIONARY = ("a".."i").to_a
+    DICTIONARY = ("a".."h").to_a*2
     def initialize
         @grid = Array.new(4){Array.new(4)}
     end
@@ -16,34 +18,26 @@ class Board
         @grid[row][col] = value
     end
 
-    def num_char(value)
-        count = 0
-        @grid.flatten.each do |ele|
-            if ele == value
-                count += 1
+    def populate
+        arr_shuffled = DICTIONARY.shuffle
+        (0...@grid.length).each do |i|
+            (0...@grid.length).each do |j|
+                pos = i, j
+                self[pos] = arr_shuffled.pop
             end
         end
-        return count
+        @grid 
     end
 
-    def place_random_char(value)
-        total_char = 2
-        while self.num_char(value) < total_char
-            row = rand(0...@grid.length)
-            column = rand(0...@grid.length)
-            position = [row, column]
-            self[position] = value
-        end
+    def render
+        print (0..3).to_a.join(' ')
+        @grid.each do |aubarr|
+            
     end
 
-    def populate
-        DICTIONARY.each do |char|
-            self.place_random_char(char)
-        end
-        @grid
+    def won?
     end
 
-    def print
-        @grid.each {|subr| p subr}
+    def reveal
     end
 end
