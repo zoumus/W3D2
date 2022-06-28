@@ -31,11 +31,13 @@ class Board
 
     def render
         print (0..3).to_a.join(' ')
-        @grid.each do |aubarr|
-            
+        @grid.each_with_index do |subarr, i|
+            puts "#{i} #{subarr.join(' ')}"
+        end
     end
 
     def won?
+        
     end
 
     def reveal
