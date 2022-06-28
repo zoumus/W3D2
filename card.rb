@@ -23,9 +23,9 @@ class Card
 
     def to_s
         if @revealed == false
-            p "-"
+            "-"
         else
-            p value
+            value
         end
     end
 

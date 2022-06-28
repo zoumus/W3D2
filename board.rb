@@ -1,3 +1,4 @@
+require "byebug"
 require_relative "./card.rb"
 
 class Board
@@ -23,23 +24,31 @@ class Board
         (0...@grid.length).each do |i|
             (0...@grid.length).each do |j|
                 pos = i, j
-                self[pos] = arr_shuffled.pop
+                self[pos] = Card.new(arr_shuffled.pop)
             end
         end
         @grid 
     end
 
     def render
-        print (0..3).to_a.join(' ')
+        puts "#{"  "}#{(0..3).to_a.join(' ')}" 
         @grid.each_with_index do |subarr, i|
             puts "#{i} #{subarr.join(' ')}"
+            
         end
+        nil
     end
 
     def won?
-        
+        @grid.all? {|value| vlaue.revealed == true}
     end
 
-    def reveal
+    def revealed(guessed_pos)
+        self[guessed_pos].reveal
+        self[guessed_pos].value
     end
 end
+
+b = Board.new
+b.populate
+b.render
