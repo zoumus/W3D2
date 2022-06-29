@@ -4,8 +4,7 @@ require_relative "humanplayer.rb"
 class Game
     def initialize
         @board = Board.new
-        @guessed_pos = []
-        @previous_guess = []
+        @previous_guess = nil
         @player_1 = Player.new("tianshu")
         @player_2 = Player.new("ZuZu")
         @current_player = @player_1
@@ -30,9 +29,8 @@ class Game
             @board.render
 
             if @board[first_guess].value != @board[second_guess].value
-                @board[first_guess].hide
-                @board[second_guess].hide
-                print 'tru again'
+                [first_guess, second_guess].each { |pos| @board[pos].hide }
+                print 'try again'
             else
                 print "it's a match!"
             end
@@ -40,8 +38,4 @@ class Game
         end
     end
 
-    def make_guess
-    end
-
-    
 end

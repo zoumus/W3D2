@@ -45,8 +45,6 @@ class Board
 
     def revealed(guessed_pos)
         self[guessed_pos].reveal
-        self[guessed_pos].value
-        
     end
 end
 
