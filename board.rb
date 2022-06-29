@@ -40,15 +40,16 @@ class Board
     end
 
     def won?
-        @grid.all? {|value| vlaue.revealed == true}
+        @grid.flatten.all? {|value| vlaue.revealed == true}
     end
 
     def revealed(guessed_pos)
         self[guessed_pos].reveal
         self[guessed_pos].value
+        
     end
 end
 
-b = Board.new
-b.populate
-b.render
+# b = Board.new
+# b.populate
+# b.render

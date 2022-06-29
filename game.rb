@@ -1,3 +1,6 @@
+require_relative "board.rb"
+require_relative "humanplayer.rb"
+
 class Game
     def initialize
         @board = Board.new
@@ -17,7 +20,27 @@ class Game
     end
 
     def play
+        @board.render
+        while !@board.won?
+            first_guess = @current_player.get_input
+            @board.revealed(first_guess)
+            @board.render
+            second_guess = @current_player.get_input
+            @board.revealed(second_guess)
+            @board.render
 
+            if @board[first_guess].value != @board[second_guess].value
+                @board[first_guess].hide
+                @board[second_guess].hide
+                print 'tru again'
+            else
+                print "it's a match!"
+            end
+            self.switch_turn
+        end
+    end
+
+    def make_guess
     end
 
     

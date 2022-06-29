@@ -8,10 +8,5 @@ class Humanplayer
         input = gets.chomp.split.map(&:to_i)
     end
 
-    def guessed_pos
-    end
-
-    def previous_guess
-    end
 
 end
